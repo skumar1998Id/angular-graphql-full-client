@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { gql } from 'apollo-angular';\nexport const GET_USERS = gql`\n  query {\n    users {\n      id\n      name\n      email\n    }\n  }\n`;\nexport const GET_BOOKS = gql`\n  query {\n    books {\n      id\n      title\n      author\n      price\n    }\n  }\n`;","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
