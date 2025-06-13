@@ -1,10 +1,10 @@
 <div class="container">
   <div class="header">
     <h2>Books</h2>
-    <p-button 
+    <p-button
       label="Add New Book" 
-      icon="pi pi-plus" 
-      (click)="openNewBookDialog()" 
+      icon="pi pi-plus"
+      (click)="openNewBookDialog()"
       styleClass="add-book-btn">
     </p-button>
   </div>
@@ -32,8 +32,10 @@
 
         <ng-template pTemplate="footer">
           <div class="book-actions">
-            <button pButton icon="pi pi-pencil" class="p-button-warning p-button-sm" (click)="editBook(book)"></button>
-            <button pButton  icon="pi pi-trash" class="p-button-text p-button-sm delete-btn" (click)="deleteBook(book)"></button>
+            <button pButton icon="pi pi-pencil" class="p-button-warning p-button-sm" 
+                    (click)="editBookAndPreventPropagation($event, book)"></button>
+            <button pButton icon="pi pi-trash" class="p-button-text p-button-sm delete-btn" 
+                    (click)="deleteBookAndPreventPropagation($event, book)"></button>
           </div>
         </ng-template>
       </p-card>
@@ -81,10 +83,6 @@
         </div>
       </div>
     </div>
-    
-    <ng-template pTemplate="footer">
-      <button pButton type="button" label="Close" icon="pi pi-times" class="p-button-text" (click)="displayDetailsDialog = false"></button>
-    </ng-template>
   </p-dialog>
 
   <p-dialog [(visible)]="displayDialog" [style]="{width: '450px'}" header="{{ isEditMode ? 'Edit Book' : 'Add New Book' }}" [modal]="true">
@@ -120,7 +118,7 @@
       </div>
 
         <div class="field">
-            <label for="publisher">IsBn</label>
+            <label for="publisher">ISBN</label>
             <input id="publisher" type="text" pInputText [(ngModel)]="bookForm.isbn" required>
         </div>
 
@@ -146,6 +144,7 @@
     </ng-template>
   </p-dialog>
 </div>
+
 
 
 

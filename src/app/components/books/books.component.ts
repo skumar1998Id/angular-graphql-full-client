@@ -181,7 +181,24 @@ export class BooksComponent implements OnInit {
     this.selectedBook = book;
     this.displayDetailsDialog = true;
   }
+
+  editBookAndPreventPropagation(event: Event, book: any): void {
+    // Stop the event from bubbling up to the card click handler
+    event.stopPropagation();
+    
+    // Call the original edit method
+    this.editBook(book);
+  }
+
+  deleteBookAndPreventPropagation(event: Event, book: any): void {
+    // Stop the event from bubbling up to the card click handler
+    event.stopPropagation();
+    
+    // Call the original delete method
+    this.deleteBook(book);
+  }
 }
+
 
 
 
