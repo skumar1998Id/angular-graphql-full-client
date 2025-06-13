@@ -1,0 +1,30 @@
+:host ::ng-deep .p-menubar {
+  padding: 0.5rem 1rem;
+}
+
+:host ::ng-deep .p-menubar-start {
+  display: flex;
+  align-items: center;
+}
+
+/* Ensure logo container has proper height */
+:host ::ng-deep .p-menubar-start a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Make sure the logo maintains aspect ratio */
+:host ::ng-deep .p-menubar-start img {
+  max-height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :host ::ng-deep .p-menubar-start img {
+    max-height: 32px;
+  }
+}
+

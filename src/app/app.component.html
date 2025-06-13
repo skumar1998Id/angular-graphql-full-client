@@ -1,11 +1,52 @@
-<h1>Bookstore GraphQL Angular Client</h1>
+<div class="min-h-screen flex flex-col">
+  <div class="flex-none">
+    <p-menubar [model]="items">
+      <ng-template pTemplate="start">
+        <a routerLink="/" class="flex items-center mr-6">
+          <img src="assets/logo.jpg" height="40" class="mr-2" alt="Bookstore Logo" />
+          <span class="text-xl font-bold">Bookstore</span>
+        </a>
+      </ng-template>
+      <ng-template pTemplate="end">
+        <div class="flex items-center">
+          <div *ngIf="isLoggedIn()" class="flex items-center">
+            <span class="mr-2">Welcome, {{ getUserName() }}</span>
+            <button pButton type="button" icon="pi pi-sign-out" class="p-button-rounded p-button-text mr-2" (click)="logout()" pTooltip="Logout"></button>
+            <button pButton type="button" icon="pi pi-shopping-cart" class="p-button-rounded p-button-text" [badge]="cartItemCount.toString()" badgeClass="p-badge-danger" *ngIf="cartItemCount > 0"></button>
+          </div>
+        </div>
+      </ng-template>
+    </p-menubar>
+  </div>
 
-<h2>Users</h2>
-<div *ngFor="let user of users">
-  <p>{{ user.name }} - {{ user.email }}</p>
+  <div class="flex-grow">
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="flex-none bg-gray-800 text-white p-4 mt-8">
+    <div class="container mx-auto">
+      <div class="flex flex-col md:flex-row justify-between">
+        <div class="mb-4 md:mb-0">
+          <h3 class="text-lg font-bold mb-2">Bookstore</h3>
+          <p class="text-sm">Your one-stop shop for all books</p>
+        </div>
+        <div>
+          <h4 class="text-md font-bold mb-2">Connect with us</h4>
+          <div class="flex space-x-4">
+            <a href="#" class="text-white hover:text-blue-300"><i class="pi pi-facebook"></i></a>
+            <a href="#" class="text-white hover:text-blue-300"><i class="pi pi-twitter"></i></a>
+            <a href="#" class="text-white hover:text-blue-300"><i class="pi pi-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4 text-center text-sm">
+        <p>&copy; 2023 Bookstore. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<h2>Books</h2>
-<div *ngFor="let book of books">
-  <p>{{ book.title }} by {{ book.author }} - ${{ book.price }}</p>
-</div>
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+

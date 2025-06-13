@@ -1,0 +1,90 @@
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+  <div class="p-fluid">
+    <div class="field">
+      <label for="title">Title</label>
+      <input id="title" type="text" pInputText formControlName="title" />
+      <small *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched" class="p-error">
+        Title is required
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="author">Author</label>
+      <input id="author" type="text" pInputText formControlName="author" />
+      <small *ngIf="bookForm.get('author')?.invalid && bookForm.get('author')?.touched" class="p-error">
+        Author is required
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="description">Description</label>
+      <textarea id="description" pInputTextarea formControlName="description" rows="3"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="isbn">ISBN</label>
+      <input id="isbn" type="text" pInputText formControlName="isbn" />
+      <small *ngIf="bookForm.get('isbn')?.invalid && bookForm.get('isbn')?.touched" class="p-error">
+        ISBN is required
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="price">Price</label>
+      <p-inputNumber id="price" formControlName="price" mode="currency" currency="USD"></p-inputNumber>
+      <small *ngIf="bookForm.get('price')?.invalid && bookForm.get('price')?.touched" class="p-error">
+        Valid price is required
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="stockQuantity">Stock Quantity</label>
+      <p-inputNumber id="stockQuantity" formControlName="stockQuantity"></p-inputNumber>
+      <small *ngIf="bookForm.get('stockQuantity')?.invalid && bookForm.get('stockQuantity')?.touched" class="p-error">
+        Stock quantity is required
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="categoryId">Category ID</label>
+      <input id="categoryId" type="text" pInputText formControlName="categoryId" />
+      <small *ngIf="bookForm.get('categoryId')?.invalid && bookForm.get('categoryId')?.touched" class="p-error">
+        Category ID is required
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="publisher">Publisher</label>
+      <input id="publisher" type="text" pInputText formControlName="publisher" />
+      <small *ngIf="bookForm.get('publisher')?.invalid && bookForm.get('publisher')?.touched" class="p-error">
+        Publisher is required
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="publicationYear">Publication Year</label>
+      <p-inputNumber id="publicationYear" formControlName="publicationYear"></p-inputNumber>
+      <small *ngIf="bookForm.get('publicationYear')?.invalid && bookForm.get('publicationYear')?.touched" class="p-error">
+        Publication year is required
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="language">Language</label>
+      <input id="language" type="text" pInputText formControlName="language" />
+      <small *ngIf="bookForm.get('language')?.invalid && bookForm.get('language')?.touched" class="p-error">
+        Language is required
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="pageCount">Page Count</label>
+      <p-inputNumber id="pageCount" formControlName="pageCount"></p-inputNumber>
+    </div>
+  </div>
+
+  <div class="flex justify-content-end mt-4">
+    <button pButton type="button" label="Cancel" class="p-button-text mr-2" (click)="ref.close()"></button>
+    <button pButton type="submit" [label]="isEditMode ? 'Update' : 'Create'" [disabled]="loading"></button>
+  </div>
+</form>

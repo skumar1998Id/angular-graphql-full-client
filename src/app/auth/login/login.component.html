@@ -1,0 +1,45 @@
+<div class="p-4">
+  <div class="card max-w-md mx-auto">
+    <h2 class="text-2xl font-bold mb-4 text-center">Login</h2>
+    <p class="text-center mb-6 text-gray-600">Welcome back! Please login to your account.</p>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="field mb-4">
+        <label for="email" class="block text-sm font-medium mb-1">Email</label>
+        <input id="email" type="email" pInputText formControlName="email" class="w-full" />
+        <small *ngIf="submitted && loginForm.get('email')?.invalid" class="p-error">
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</span>
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email</span>
+        </small>
+      </div>
+      
+      <div class="field mb-4">
+        <label for="password" class="block text-sm font-medium mb-1">Password</label>
+        <p-password id="password" formControlName="password" [toggleMask]="true" [feedback]="false" styleClass="w-full"></p-password>
+        <small *ngIf="submitted && loginForm.get('password')?.invalid" class="p-error">
+          <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</span>
+        </small>
+      </div>
+      
+      <div class="flex justify-between items-center mb-4">
+        <div class="flex items-center">
+          <p-checkbox name="remember" [binary]="true" inputId="remember"></p-checkbox>
+          <label for="remember" class="ml-2 text-sm">Remember me</label>
+        </div>
+        <a (click)="forgotPassword()" class="text-sm text-blue-600 hover:underline cursor-pointer">Forgot password?</a>
+      </div>
+      
+      <button pButton type="submit" label="Login" class="w-full" [disabled]="loading">
+        <i *ngIf="loading" class="pi pi-spinner pi-spin mr-2"></i>
+      </button>
+      
+      <div class="text-center mt-4">
+        <p class="text-sm text-gray-600">
+          Don't have an account? 
+          <a (click)="goToSignup()" class="text-blue-600 hover:underline cursor-pointer">Sign up</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

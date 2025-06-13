@@ -1,0 +1,59 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="field mb-4">
+    <label for="name" class="block text-sm font-medium mb-1">Name</label>
+    <input id="name" type="text" pInputText formControlName="name" class="w-full" />
+    <small *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="p-error">
+      Name is required
+    </small>
+  </div>
+  
+  <div class="field mb-4">
+    <label for="email" class="block text-sm font-medium mb-1">Email</label>
+    <input id="email" type="email" pInputText formControlName="email" class="w-full" />
+    <small *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="p-error">
+      Valid email is required
+    </small>
+  </div>
+  
+  <div class="field mb-4">
+    <label for="phoneNumber" class="block text-sm font-medium mb-1">Phone Number</label>
+    <input id="phoneNumber" type="text" pInputText formControlName="phoneNumber" class="w-full" />
+    <small *ngIf="userForm.get('phoneNumber')?.invalid && userForm.get('phoneNumber')?.touched" class="p-error">
+      Phone number is required
+    </small>
+  </div>
+  
+  <div class="field mb-4">
+    <label for="address" class="block text-sm font-medium mb-1">Address</label>
+    <input id="address" type="text" pInputText formControlName="address" class="w-full" />
+    <small *ngIf="userForm.get('address')?.invalid && userForm.get('address')?.touched" class="p-error">
+      Address is required
+    </small>
+  </div>
+  
+  <div class="field mb-4">
+    <label for="password" class="block text-sm font-medium mb-1">
+      {{ isEditMode ? 'Password (leave empty to keep current)' : 'Password' }}
+    </label>
+    <p-password id="password" formControlName="password" [toggleMask]="true" 
+                [feedback]="true" [style]="{'width':'100%'}" 
+                [promptLabel]="'Please enter a password'" 
+                [weakLabel]="'Too simple'" 
+                [mediumLabel]="'Average complexity'" 
+                [strongLabel]="'Complex password'"></p-password>
+    <small *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="p-error">
+      <span *ngIf="userForm.get('password')?.errors?.['required']">Password is required</span>
+      <span *ngIf="userForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</span>
+    </small>
+  </div>
+  
+  <div class="flex justify-end">
+    <button pButton type="button" label="Cancel" class="p-button-text mr-2" 
+            (click)="closeDialog()"></button>
+    <button pButton type="submit" [label]="isEditMode ? 'Update' : 'Create'" 
+            [disabled]="userForm.invalid || loading" 
+            [loading]="loading"></button>
+  </div>
+</form>
+
+

@@ -1,0 +1,197 @@
+.container {
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.book-card {
+  height: 100%;
+}
+
+.book-title {
+  background-color: #f8f9fa;
+  padding: 0.75rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.book-details {
+  padding: 0.5rem 0;
+}
+
+.book-details p {
+  margin: 0.5rem 0;
+}
+
+.book-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+
+:host ::ng-deep .add-book-btn {
+  background-color: #2196F3;
+  border-color: #2196F3;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  height: auto;
+}
+
+:host ::ng-deep .add-book-btn:hover {
+  background-color: #1976D2;
+  border-color: #1976D2;
+}
+
+:host ::ng-deep .p-button.add-book-btn .p-button-icon {
+  font-size: 1.1rem;
+  margin-right: 8px;
+}
+
+/* Style delete button with just red icon */
+:host ::ng-deep .delete-btn {
+  background-color: transparent;
+  border-color: transparent;
+  color: #f44336;
+}
+
+:host ::ng-deep .delete-btn:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+  border-color: transparent;
+  color: #d32f2f;
+}
+
+/* 2. Card background color should be light blue */
+:host ::ng-deep .book-card {
+  background-color: #E3F2FD; /* Very light blue background */
+  border: 1px solid #BBDEFB;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+:host ::ng-deep .book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(33, 150, 243, 0.2);
+}
+
+:host ::ng-deep .book-title {
+  color: #1565C0;
+  border-bottom: 1px solid #90CAF9;
+}
+
+/* 3. Edit and add form background color should be gray */
+:host ::ng-deep .p-dialog .p-dialog-content {
+  background-color: #F5F5F5; /* Light gray background */
+  padding: 1.5rem;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header {
+  background-color: #E0E0E0; /* Slightly darker gray for header */
+  color: #424242;
+  border-bottom: 1px solid #BDBDBD;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-footer {
+  background-color: #F5F5F5; /* Light gray background */
+  border-top: 1px solid #E0E0E0;
+  padding: 1rem;
+}
+
+/* Additional styling for form fields */
+:host ::ng-deep .p-field label {
+  font-weight: 600;
+  color: #455A64;
+}
+
+:host ::ng-deep .p-inputtext:focus {
+  border-color: #64B5F6;
+  box-shadow: 0 0 0 0.2rem rgba(100, 181, 246, 0.25);
+}
+
+/* Book Details Dialog Styling */
+.book-details-dialog h2 {
+  color: #1565C0;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.book-details-dialog h3 {
+  color: #546E7A;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.description-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.description-section h4 {
+  color: #455A64;
+  margin-bottom: 0.5rem;
+}
+
+.description-section p {
+  line-height: 1.5;
+  color: #37474F;
+}
+
+.additional-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #455A64;
+  font-size: 0.9rem;
+}
+
+.detail-value {
+  color: #37474F;
+}
+
+/* Make the book card clickable with a pointer cursor */
+:host ::ng-deep .book-card .p-card {
+  cursor: pointer;
+}
+
+/* Style the dialog */
+:host ::ng-deep .p-dialog .p-dialog-content {
+  padding: 1.5rem;
+}
+
+
+

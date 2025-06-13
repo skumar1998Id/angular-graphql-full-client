@@ -1,0 +1,68 @@
+<div class="p-4">
+  <div class="card max-w-md mx-auto">
+    <h2 class="text-2xl font-bold mb-4 text-center">Create an Account</h2>
+    <p class="text-center mb-6 text-gray-600">Join our community and start exploring books!</p>
+    
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="field mb-4">
+        <label for="name" class="block text-sm font-medium mb-1">Full Name</label>
+        <input id="name" type="text" pInputText formControlName="name" class="w-full" />
+        <small *ngIf="submitted && signupForm.get('name')?.invalid" class="p-error">
+          Name is required
+        </small>
+      </div>
+      
+      <div class="field mb-4">
+        <label for="email" class="block text-sm font-medium mb-1">Email</label>
+        <input id="email" type="email" pInputText formControlName="email" class="w-full" />
+        <small *ngIf="submitted && signupForm.get('email')?.invalid" class="p-error">
+          <span *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</span>
+          <span *ngIf="signupForm.get('email')?.errors?.['email']">Please enter a valid email</span>
+        </small>
+      </div>
+      
+      <div class="field mb-4">
+        <label for="phoneNumber" class="block text-sm font-medium mb-1">Phone Number</label>
+        <input id="phoneNumber" type="text" pInputText formControlName="phoneNumber" class="w-full" />
+        <small *ngIf="submitted && signupForm.get('phoneNumber')?.invalid" class="p-error">
+          Phone number is required
+        </small>
+      </div>
+      
+      <div class="field mb-4">
+        <label for="address" class="block text-sm font-medium mb-1">Address</label>
+        <input id="address" type="text" pInputText formControlName="address" class="w-full" />
+        <small *ngIf="submitted && signupForm.get('address')?.invalid" class="p-error">
+          Address is required
+        </small>
+      </div>
+      
+      <div class="field mb-4">
+        <label for="password" class="block text-sm font-medium mb-1">Password</label>
+        <p-password id="password" formControlName="password" [toggleMask]="true" styleClass="w-full"></p-password>
+        <small *ngIf="submitted && signupForm.get('password')?.invalid" class="p-error">
+          <span *ngIf="signupForm.get('password')?.errors?.['required']">Password is required</span>
+          <span *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</span>
+        </small>
+      </div>
+      
+      <div class="field-checkbox mb-4">
+        <p-checkbox name="terms" [binary]="true" inputId="terms"></p-checkbox>
+        <label for="terms" class="ml-2 text-sm">I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a></label>
+      </div>
+      
+      <button pButton type="submit" label="Sign Up" class="w-full" [disabled]="loading">
+        <i *ngIf="loading" class="pi pi-spinner pi-spin mr-2"></i>
+      </button>
+      
+      <div class="text-center mt-4">
+        <p class="text-sm text-gray-600">
+          Already have an account? 
+          <a (click)="goToLogin()" class="text-blue-600 hover:underline cursor-pointer">Login</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+
+

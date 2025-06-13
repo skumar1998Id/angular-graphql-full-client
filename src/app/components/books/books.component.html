@@ -1,0 +1,152 @@
+<div class="container">
+  <div class="header">
+    <h2>Books</h2>
+    <p-button 
+      label="Add New Book" 
+      icon="pi pi-plus" 
+      (click)="openNewBookDialog()" 
+      styleClass="add-book-btn">
+    </p-button>
+  </div>
+
+  <p-confirmDialog></p-confirmDialog>
+  <p-toast></p-toast>
+
+  <div *ngIf="loading" class="loading-container">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+
+  <div *ngIf="!loading" class="book-grid">
+    <div *ngFor="let book of books" class="book-card">
+      <p-card (click)="showBookDetails(book)">
+        <ng-template pTemplate="header">
+          <div class="book-title">{{ book.title }}</div>
+        </ng-template>
+        
+        <div class="book-details">
+          <p><strong>Author:</strong> {{ book.author }}</p>
+          <p><strong>Price:</strong> {{ book.price | currency }}</p>
+          <p><strong>Publisher:</strong> {{ book.publisher }}</p>
+          <p><strong>Language:</strong> {{ book.language }}</p>
+        </div>
+
+        <ng-template pTemplate="footer">
+          <div class="book-actions">
+            <button pButton icon="pi pi-pencil" class="p-button-warning p-button-sm" (click)="editBook(book)"></button>
+            <button pButton  icon="pi pi-trash" class="p-button-text p-button-sm delete-btn" (click)="deleteBook(book)"></button>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+
+  <p-dialog [(visible)]="displayDetailsDialog" [style]="{width: '500px'}" header="Book Details" [modal]="true">
+    <div *ngIf="selectedBook" class="book-details-dialog">
+      <h2>{{ selectedBook.title }}</h2>
+      <h3>by {{ selectedBook.author }}</h3>
+      
+      <div class="description-section">
+        <h4>About</h4>
+        <p>{{ selectedBook.description || 'No description available.' }}</p>
+      </div>
+      
+      <div class="additional-details">
+        <div class="detail-row">
+          <span class="detail-label">ISBN:</span>
+          <span class="detail-value">{{ selectedBook.isbn }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Price:</span>
+          <span class="detail-value">{{ selectedBook.price | currency }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Publisher:</span>
+          <span class="detail-value">{{ selectedBook.publisher }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Publication Year:</span>
+          <span class="detail-value">{{ selectedBook.publicationYear }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Language:</span>
+          <span class="detail-value">{{ selectedBook.language }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Pages:</span>
+          <span class="detail-value">{{ selectedBook.pageCount }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">In Stock:</span>
+          <span class="detail-value">{{ selectedBook.stockQuantity }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <ng-template pTemplate="footer">
+      <button pButton type="button" label="Close" icon="pi pi-times" class="p-button-text" (click)="displayDetailsDialog = false"></button>
+    </ng-template>
+  </p-dialog>
+
+  <p-dialog [(visible)]="displayDialog" [style]="{width: '450px'}" header="{{ isEditMode ? 'Edit Book' : 'Add New Book' }}" [modal]="true">
+    <div class="p-fluid">
+      <div class="field">
+        <label for="title">Title</label>
+        <input id="title" type="text" pInputText [(ngModel)]="bookForm.title" required>
+      </div>
+
+      <div class="field">
+        <label for="author">Author</label>
+        <input id="author" type="text" pInputText [(ngModel)]="bookForm.author" required>
+      </div>
+
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea id="description" pInputTextarea [(ngModel)]="bookForm.description" rows="3"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="price">Price</label>
+        <p-inputNumber id="price" [(ngModel)]="bookForm.price" mode="currency" currency="USD"></p-inputNumber>
+      </div>
+
+      <div class="field">
+        <label for="stockQuantity">Stock Quantity</label>
+        <p-inputNumber id="stockQuantity" [(ngModel)]="bookForm.stockQuantity"></p-inputNumber>
+      </div>
+
+      <div class="field">
+        <label for="publisher">Publisher</label>
+        <input id="publisher" type="text" pInputText [(ngModel)]="bookForm.publisher" required>
+      </div>
+
+        <div class="field">
+            <label for="publisher">IsBn</label>
+            <input id="publisher" type="text" pInputText [(ngModel)]="bookForm.isbn" required>
+        </div>
+
+      <div class="field">
+        <label for="publicationYear">Publication Year</label>
+        <p-inputNumber id="publicationYear" [(ngModel)]="bookForm.publicationYear"></p-inputNumber>
+      </div>
+
+      <div class="field">
+        <label for="language">Language</label>
+        <input id="language" type="text" pInputText [(ngModel)]="bookForm.language" required>
+      </div>
+
+      <div class="field">
+        <label for="pageCount">Page Count</label>
+        <p-inputNumber id="pageCount" [(ngModel)]="bookForm.pageCount"></p-inputNumber>
+      </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <button pButton type="button" label="Cancel" icon="pi pi-times" class="p-button-text" (click)="displayDialog = false"></button>
+      <button pButton type="button" label="Save" icon="pi pi-check" (click)="saveBook()"></button>
+    </ng-template>
+  </p-dialog>
+</div>
+
+
+
+

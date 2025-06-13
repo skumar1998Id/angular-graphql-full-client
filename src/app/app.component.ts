@@ -1,46 +1,87 @@
-import { Component, OnInit } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
+import { AuthService } from './auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html', // your template file
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  users: any[] = [];
-  books: any[] = [];
+export class AppComponent implements OnInit, OnDestroy {
+  title = 'Bookstore GraphQL';
+  items: MenuItem[] = [];
+  cartItemCount = 0;
+  private authSubscription: Subscription | null = null;
 
-  constructor(private apollo: Apollo) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    // Fetch users
-    this.apollo.watchQuery<any>({
-      query: gql`
-        query GetUsers {
-          users {
-            id
-            name
-            email
-          }
-        }
-      `
-    }).valueChanges.subscribe(({ data, loading }) => {
-      this.users = data.users;
-    });
+    this.initializeMenu();
+    
+    // Subscribe to auth status changes
+    this.authSubscription = this.authService.authStatusChanged.subscribe(
+      (isLoggedIn: boolean) => {
+        this.initializeMenu();
+      }
+    );
+  }
 
-    // Fetch books
-    this.apollo.watchQuery<any>({
-      query: gql`
-        query GetBooks {
-          books {
-            id
-            title
-            author
-            price
-          }
+  ngOnDestroy() {
+    // Clean up subscription
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+  }
+
+  initializeMenu() {
+    // Only initialize menu items if user is logged in
+    if (this.isLoggedIn()) {
+      this.items = [
+        {
+          label: 'Books',
+          icon: 'pi pi-book',
+          routerLink: '/books'
+        },
+        {
+          label: 'Users',
+          icon: 'pi pi-users',
+          routerLink: '/users'
+        },
+        {
+          label: 'Contact Us',
+          icon: 'pi pi-envelope',
+          routerLink: '/contact'
         }
-      `
-    }).valueChanges.subscribe(({ data, loading }) => {
-      this.books = data.books;
-    });
+      ];
+    } else {
+      this.items = [];
+    }
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  login() {
+    this.router.navigate(['/login']);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+
+  getUserName(): string {
+    return this.authService.getCurrentUserName() || 'User';
   }
 }
+
+
+
+
+

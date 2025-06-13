@@ -1,0 +1,99 @@
+.users-container {
+  padding: 20px;
+}
+
+/* Enhanced table styling */
+:host ::ng-deep .p-datatable {
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+:host ::ng-deep .p-datatable .p-datatable-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  padding: 1rem;
+}
+
+/* Style the table header to match books card header */
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background-color: #2196F3;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border: 1px solid #1e88e5;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr {
+  transition: background-color 0.2s;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
+  background-color: #f1f3f5;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e9ecef;
+}
+
+:host ::ng-deep .p-datatable .p-paginator {
+  padding: 0.75rem 1rem;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+
+/* Button styling */
+:host ::ng-deep .p-button.p-button-sm {
+  padding: 0.4rem 0.75rem;
+}
+
+/* Make Add User button blue and larger */
+:host ::ng-deep .add-user-btn {
+  background-color: #2196F3;
+  border-color: #2196F3;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  height: auto;
+}
+
+:host ::ng-deep .add-user-btn:hover {
+  background-color: #1976D2;
+  border-color: #1976D2;
+}
+
+/* Style delete button with just red icon */
+:host ::ng-deep .delete-btn {
+  background-color: transparent;
+  border-color: transparent;
+  color: #f44336;
+}
+
+:host ::ng-deep .delete-btn:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+  border-color: transparent;
+  color: #d32f2f;
+}
+
+:host ::ng-deep .delete-btn:focus {
+  box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.2);
+}
+
+/* Card styling */
+:host ::ng-deep .card {
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Card header styling */
+:host ::ng-deep .card h2 {
+  color: #495057;
+  font-weight: 600;
+}
+
+
+
+

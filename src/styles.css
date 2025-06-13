@@ -1,5 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
+  @apply bg-gray-50;
 }
+
+.content {
+  @apply p-6;
+}
+
+/* Add to your existing styles */
+.active {
+  background-color: rgba(255,255,255,0.2);
+  font-weight: bold;
+}
+
+.book-list, .user-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.book-card, .user-card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.book-card:hover, .user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.book-details {
+  margin-top: 10px;
+}
+
+.author {
+  color: #666;
+}
+
+.price {
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+/* Custom menubar styling */
+
+.custom-menubar .p-menubar-root-list {
+  background-color: #2196F3 !important;
+}
+
+.custom-menubar .p-menuitem-link {
+  color: #000000 !important; /* Black text */
+}
+
+.custom-menubar .p-menuitem-link:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.custom-menubar .p-menubar-button {
+  color: #000000 !important;
+}
+
+/* Auth icon styling */
+.auth-icon {
+  color: #000000 !important; /* Black icon */
+  font-size: 1.2rem;
+}
+
+.auth-icon:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Style for the active route buttons */
+.p-button-outlined {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  border-color: #000000 !important;
+}
+
+
+
+
+
+
+
