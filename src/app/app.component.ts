@@ -47,11 +47,11 @@ export class AppComponent implements OnInit, OnDestroy {
           icon: 'pi pi-book',
           routerLink: '/books'
         },
-        {
+       /* {
           label: 'Users',
           icon: 'pi pi-users',
           routerLink: '/users'
-        },
+        },*/
         {
           label: 'Contact Us',
           icon: 'pi pi-envelope',
